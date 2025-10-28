@@ -1,10 +1,6 @@
-# Online Retail Data Analysis – SQL Server:
+# Titanic Exploratory Data Analysis (EDA)
 
 
-
-This project demonstrates how to analyze e-commerce transactional data using \*\*SQL Server (T-SQL)\*\*.
-
-It showcases skills in \*\*data extraction, aggregation, subqueries, joins, views, and query optimization\*\*.
 
 
 
@@ -12,33 +8,11 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# Dataset:
+## Project Overview:
 
+This project performs Exploratory Data Analysis (EDA) on the Titanic dataset, a classic dataset used for analytical learning and survival prediction studies.  
 
-
-\*\*Source:\*\* `data.csv` (Online Retail Dataset)
-
-
-
-| Column        | Description                            |
-
-| ------------- | -------------------------------------- |
-
-| `InvoiceNo`   | Unique invoice number (transaction ID) |
-
-| `StockCode`   | Product code                           |
-
-| `Description` | Product name                           |
-
-| `Quantity`    | Quantity sold                          |
-
-| `InvoiceDate` | Date and time of purchase              |
-
-| `UnitPrice`   | Price per unit                         |
-
-| `CustomerID`  | Customer identifier                    |
-
-| `Country`     | Country of customer                    |
+The goal is to explore, clean, and visualize data to understand relationships, identify patterns, and extract actionable insights.
 
 
 
@@ -46,57 +20,21 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# Tools Used:
+## Datasets Used:
 
 
 
-\* \*\*Microsoft SQL Server Management Studio (SSMS)\*\*
-
-\* \*\*SQL Server (T-SQL syntax)\*\*
 
 
+| File Name | Description |
 
----
+|------------|-------------|
 
+| `train.csv` | Passenger details with survival information |
 
+| `test.csv` | Passenger details without survival labels |
 
-# How to Run:
-
-
-
-1\. \*\*Clone or download\*\* this repository.
-
-2\. Place your dataset file (e.g., `data.csv`) in a known directory on your system.
-
-3\. Open `OnlineRetail.sql` in \*\*SQL Server Management Studio (SSMS)\*\*.
-
-4\. Update the `BULK INSERT` path inside the script:
-
-
-
-&nbsp;  ```sql
-
-&nbsp;  BULK INSERT OnlineRetail
-
-&nbsp;  FROM 'C:\\path\\to\\data.csv'
-
-&nbsp;  WITH (
-
-&nbsp;      FIRSTROW = 2,
-
-&nbsp;      FIELDTERMINATOR = ',',
-
-&nbsp;      ROWTERMINATOR = '\\n',
-
-&nbsp;      CODEPAGE = '65001',
-
-&nbsp;      TABLOCK
-
-&nbsp;  );
-
-&nbsp;  ```
-
-5\. Execute the script step by step (F5).
+| `gender\_submission.csv` | Sample survival predictions for the test data |
 
 
 
@@ -104,25 +42,21 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# SQL Features Demonstrated:
+## Tools \& Libraries:
 
 
 
-| Feature                                  | Example                                       |
 
-| ---------------------------------------- | --------------------------------------------- |
 
-| \*\*SELECT / WHERE / ORDER BY / GROUP BY\*\* | Basic data extraction and aggregation         |
+\- Platform: Google Colab / Jupyter Notebook  
 
-| \*\*Aggregate Functions\*\*                  | `SUM`, `AVG` for revenue calculations         |
+\- Languages \& Libraries:
 
-| \*\*Subqueries\*\*                           | Identify customers spending above the average |
+&nbsp; - `pandas` → Data manipulation  
 
-| \*\*JOINs\*\*                                | Self-join to find products bought together    |
+&nbsp; - `matplotlib` → Basic plotting  
 
-| \*\*Views\*\*                                | Create reusable data views for reporting      |
-
-| \*\*Indexes\*\*                              | Optimize query performance                    |
+&nbsp; - `seaborn` → Advanced visualizations  
 
 
 
@@ -130,25 +64,61 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# Key Analyses Performed:
+## EDA Workflow:
 
 
 
-1\. \*\*View all records\*\*
 
-2\. \*\*Total revenue per country\*\*
 
-3\. \*\*Average revenue per customer\*\*
+1.Basic Data Exploration  
 
-4\. \*\*Top 5 selling products\*\*
+Used `.describe()`, `.info()`, and `.value\_counts()` to understand dataset shape, data types, and statistical summaries.
 
-5\. \*\*Transactions from the United Kingdom only\*\*
 
-6\. \*\*Customers spending above average (subquery)\*\*
 
-7\. \*\*Sales summary view (`vw\_SalesByCountry`)\*\*
+2.Data Visualization  
 
-8\. \*\*Indexes on `Country` and `InvoiceDate` for performance\*\*
+Created correlation visuals using:
+
+\- `sns.pairplot()` → pairwise relationships  
+
+\- `sns.heatmap()` → correlation matrix
+
+
+
+3.Relationship \& Trend Analysis  
+
+Explored patterns between survival rate and key attributes such as:
+
+\- Gender (`Sex`)
+
+\- Class (`Pclass`)
+
+\- Age and Fare
+
+
+
+4.Univariate \& Bivariate Visuals  
+
+Used:
+
+\- Histograms to study distributions  
+
+\- Boxplots to compare continuous features  
+
+\- Scatterplots to observe variable relationships
+
+
+
+5.Observations  
+
+Added insights and remarks after each major visualization for clear interpretation.
+
+
+
+6.Summary of Findings  
+
+Compiled all patterns and takeaways into a structured summary for presentation and reporting.
 
 
 
@@ -156,13 +126,27 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# Deliverables:
+## Key Insights
 
 
 
-\* `OnlineRetail.sql` → SQL script with all queries
 
-\* `Screenshots/` → Folder containing output screenshots (results of queries)
+
+| Insight | Description |
+
+|----------|-------------|
+
+| 🧍‍♀️ Gender | Females had a significantly higher survival rate than males |
+
+| 🛳️ Class | 1st-class passengers were more likely to survive than 3rd-class |
+
+| 👶 Age | Younger passengers (especially children) had higher survival chances |
+
+| 💰 Fare | Higher fare correlated positively with survival probability |
+
+| 📈 Trend | Most passengers were aged between 20–40 years |
+
+
 
 
 
@@ -170,17 +154,91 @@ It showcases skills in \*\*data extraction, aggregation, subqueries, joins, view
 
 
 
-# Author:
+## How to Run the Notebook:
 
 
 
-P.Harsha Vardhan
+
+
+1\. Open \[Google Colab](https://colab.research.google.com/) or Jupyter Notebook.  
+
+2\. Upload the three datasets: `train.csv`, `test.csv`, and `gender\_submission.csv`.  
+
+3\. Run all cells sequentially.  
+
+4\. The notebook will automatically generate visuals and insights.  
+
+5\. Save and download the final output (`EDA\_Report.pdf` or processed CSVs).
+
+
 
 ---
 
 
 
-✅ \*This project fulfills SQL fundamentals such as SELECT, JOIN, GROUP BY, Subqueries, Views, and Index optimization using SQL Server.\*
+## Output Files:
+
+
+
+
+
+| File Name | Description |
+
+|------------|-------------|
+
+| `train\_with\_month.csv` | Dataset with generated `order\_date` and extracted month column |
+
+| `grouped\_by\_year\_month.csv` | Aggregated file showing grouped results by year and month |
+
+| `EDA\_Report.pdf` | Final professional report with visuals, insights, and author info |
+
+
+
+---
+
+
+
+## Learning Outcomes:
+
+
+
+
+
+\- Performed end-to-end data exploration and visualization.  
+
+\- Identified meaningful trends through graphical analysis.  
+
+\- Gained experience with real-world data preparation and cleaning.  
+
+\- Strengthened understanding of EDA practices and Python libraries.
+
+
+
+---
+
+
+
+## Author:
+
+
+
+
+
+P. Harsha Vardhan  
+
+Data Analyst Intern
+
+
+
+---
+
+
+
+
+
+
+
+
 
 
 
